@@ -16,17 +16,20 @@ function authenticate(\Slim\Route $route){
  
 	$username = $headers["username"];
 	$password = $headers["password"];
-	
+	echo "authenticate got callled";
 	if(!empty($username)&&!empty($password)){
 		$action=ACTION_AUTHENTICATE_USER;
 		$parameters = array("username"=>$username,"password"=>$password);
+	}else{
+		echo "header for username and password is not set";
+		$app->response ()->setStatus (HTTPSTATUS_UNAUTHORIZED);
+		$app->halt(401);
 	}
  	return  new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action,$app, $parameters);
 
 }
 
-
-
+//user id path
 $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) {
 	
 	$httpMethod = $app->request->getMethod ();
@@ -56,6 +59,7 @@ $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) 
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
+//searching users on string
 $app->map ( "/users/search(/:searchingString)", "authenticate", function ($string = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -74,6 +78,56 @@ if(!empty($string)){
 }
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
+
+//Publisher searching
+$app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID = null) use($app) {
+	
+	$httpMethod = $app->request->getMethod ();
+	$action = null;
+	$parameters ["publisher"] = $publisherID; // prepare parameters to be passed to the controller (example: ID)
+	
+	if (($userID == null) or is_numeric ( $userID )) {
+		switch ($httpMethod) {
+			case "GET" :
+				if ($userID != null)
+					$action = ACTION_GET_PUBLISHER;
+				else
+					$action = ACTION_GET_PUBLISHERS;
+				break;
+			case "POST" :
+				$action = ACTION_CREATE_PUBLISHER;
+				break;
+			case "PUT" :
+				$action = ACTION_UPDATE_PUBLISHER;
+				break;
+			case "DELETE" :
+				$action = ACTION_DELETE_PUBLISHER;
+				break;
+			default :
+		}
+	}
+	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
+} )->via ( "GET", "POST", "PUT", "DELETE" );
+
+$app->map ( "/publisher/search(/:searchingAddress)", "authenticate", function ($string = null) use($app) {
+
+	$httpMethod = $app->request->getMethod ();
+	$action=null;
+	$parameters ["SearchingAddress"] = $searchingAddress;
+
+if(!empty($string)){
+	switch ($httpMethod) {
+		case "GET" :
+				if ($string != null) {
+					$action = ACTION_SEARCH_PUBLISHER;
+				}
+			break;
+		default:
+		}
+}
+	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
+} )->via ( "GET" );
+
 
 
 $app->run ();
