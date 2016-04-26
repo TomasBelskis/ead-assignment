@@ -11,9 +11,8 @@ function authenticate(\Slim\Route $route){
   global $headers, $app;
   $action= null;
   $parameters = null;
-  $result = null;
-  
- 
+  $result = null;  
+
 	$username = $headers["username"];
 	$password = $headers["password"];
 	
@@ -24,8 +23,6 @@ function authenticate(\Slim\Route $route){
  	return  new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action,$app, $parameters);
 
 }
-
-
 
 $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) {
 	
@@ -56,6 +53,35 @@ $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) 
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
+$app->map ( "/books(/:id)", "authenticate", function ($bookID = null) use($app) {
+
+	$httpMethod = $app->request->getMethod ();
+	$action = null;
+	$parameters ["book_id"] = $bookID; // prepare parameters to be passed to the controller (example: ID)
+
+	if (($bookID == null) or is_numeric ( $bookID )) {
+		switch ($httpMethod) {
+			case "GET" :
+				if ($bookID != null)
+					$action = ACTION_GET_BOOK;
+					else
+						$action = ACTION_GET_BOOKS;
+						break;
+			case "POST" :
+				$action = ACTION_CREATE_BOOK;
+				break;
+			case "PUT" :
+				$action = ACTION_UPDATE_BOOK;
+				break;
+			case "DELETE" :
+				$action = ACTION_DELETE_BOOK;
+				break;
+			default :
+		}
+	}
+	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
+} )->via ( "GET", "POST", "PUT", "DELETE" );
+
 $app->map ( "/users/search(/:searchingString)", "authenticate", function ($string = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -75,6 +101,24 @@ if(!empty($string)){
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
 
+$app->map ( "/books/search(/:searchingString)", "authenticate", function ($string = null) use($app) {
+
+	$httpMethod = $app->request->getMethod ();
+	$action=null;
+	$parameters ["SearchingString"] = $string;
+
+	if(!empty($string)){
+		switch ($httpMethod) {
+			case "GET" :
+				if ($string != null) {
+					$action = ACTION_SEARCH_BOOKS;
+				}
+				break;
+			default:
+		}
+	}
+	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
+} )->via ( "GET" );
 
 $app->run ();
 class loadRunMVCComponents {
@@ -90,5 +134,4 @@ class loadRunMVCComponents {
 		$view->output (); // this returns the response to the requesting client
 	}
 }
-
 ?>
