@@ -8,12 +8,13 @@ class BookController {
 		$this->slimApp = $slimApp;
 		$this->requestBody = json_decode ( $this->slimApp->request->getBody (), true ); // this must contain the representation of the new book
 		
-		if (! empty ( $parameters ["book_id"] ))
-			$bookID = $parameters ["book_id"];
+		if (! empty ( $parameters ))
+			$publisher = $parameters ["publisher"];
+			
 		
 		switch ($action) {
-			case ACTION_GET_BOOK :
-				$this->getBook ( $bookID );
+			case ACTION_PUBLISHER_ACQUIRES_AUTHOR :
+				$this->PublisherAcquiredAuthor ( $bookID );
 				break;
 			case ACTION_GET_BOOKS :
 				$this->getBooks ();

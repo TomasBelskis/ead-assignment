@@ -1,6 +1,10 @@
 <?php
+require_once (realpath(dirname(__FILE__)."/../SimpleTest/autorun.php"));
+require_once (realpath(dirname(__FILE__)."/../conf/config.inc.php"));
+require_once (realpath(dirname(__FILE__)."/../app/models/BookModel.php"));
 class BookModelTests extends UnitTestCase {
 	private $bookModel;
+	
 	public function setUp() {
 		$this->$bookModel = new BookModel();
 	}
