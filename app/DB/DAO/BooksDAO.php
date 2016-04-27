@@ -12,7 +12,7 @@ class BooksDAO {
 		$sql = "SELECT * ";
 		$sql .= "FROM books ";
 		if ($id != null)
-			$sql .= "WHERE books.id=? ";
+			$sql .= "WHERE books.book_id=? ";
 		$sql .= "ORDER BY books.title ";
 		
 		$stmt = $this->dbManager->prepareQuery ( $sql );

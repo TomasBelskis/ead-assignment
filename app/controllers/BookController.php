@@ -3,19 +3,19 @@ class bookController {
 	private $slimApp;
 	private $model;
 	private $requestBody;
-	public function __construct($model, $action = null, $slimApp, $parameteres = null) {
+	public function __construct($model, $action = null, $slimApp, $parameters = null) {
 		$this->model = $model;
 		$this->slimApp = $slimApp;
 		$this->requestBody = json_decode ( $this->slimApp->request->getBody (), true ); // this must contain the representation of the new book
 		
-		if (! empty ( $parameteres ["book_id"] ))
-			$bookID = $parameteres ["book_id"];
+		if (! empty ( $parameters ["book_id"] ))
+			$bookID = $parameters ["book_id"];
 		
 		switch ($action) {
 			case ACTION_GET_BOOK :
 				$this->getBook ( $bookID );
 				break;
-			case ACTION_GET_BOOK :
+			case ACTION_GET_BOOKS :
 				$this->getBooks ();
 				break;
 			case ACTION_UPDATE_BOOK :
@@ -70,7 +70,7 @@ class bookController {
 	}
 	
 	private function createNewBook($newBook) {
-		if ($newID = $this->model->createNewbook ( $newbook )) {
+		if ($newID = $this->model->createNewbook ( $newBook )) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_CREATED );
 			$Message = array (
 					GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_CREATED,
