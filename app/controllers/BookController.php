@@ -1,5 +1,5 @@
 <?php
-class bookController {
+class BookController {
 	private $slimApp;
 	private $model;
 	private $requestBody;
