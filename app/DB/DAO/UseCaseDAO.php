@@ -18,9 +18,11 @@ class UseCaseDAO {
 			$sql .= "SET publisher = ?";
 			$sql .= "WHERE author_id = ?;";
 			//echo $sql;
+			
 			$stmt = $this->dbManager->prepareQuery($sql);
 			$this->dbManager->bindValue($stmt, 1 ,$publisher, $this->dbManager->STRING_TYPE);
 			$this->dbManager->bindValue($stmt, 2 ,$publisher, $this->dbManager->STRING_TYPE);
+			
 			//execute the query
 			$this->dbManager->executeQuery($stmt);
 			return true;

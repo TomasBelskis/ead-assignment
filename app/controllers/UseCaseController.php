@@ -43,6 +43,7 @@ class UseCaseController {
 						GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE
 				);
 				$this->model->apiResponse = $Message;
+			}
 		}
 	}
 	
