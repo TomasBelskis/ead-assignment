@@ -17,7 +17,7 @@ class UseCaseController {
 				$this->PublisherAcquiresAuthor($author_id, $publisher);
 				break;
 			case ACTION_AUTHOR_ADDS_NEW_BOOK :
-				$this->AuthorAddsBook($this->requestBody);
+				$this->AuthorAddsBook($author_id, $publisher,$this->requestBody);
 				break;				
 			case null :
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
@@ -33,9 +33,20 @@ class UseCaseController {
 		
 	}
 	
-	private function AuthorAddsBook($param) {
-		
-	
+	private function AuthorAddsBook($authorId, $publisher, $param) 
+	{
+		$answer = $this->model->searchPublisherOnAddress ( $address );
+		if ($answer != null) {
+			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
+			$this->model->apiResponse = $answer;
+		} else {
+			
+			$this->slimApp->response ()->setStatus ( HTTPSTATUS_NOCONTENT );
+			$Message = array (
+					GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE 
+			);
+			$this->model->apiResponse = $Message;
+		}	
 	}
 }
 ?>

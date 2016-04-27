@@ -204,19 +204,20 @@ $app->map ( "/publisher/:name/user/:id", "authenticate", function ($pName = null
 
 	$httpMethod = $app->request->getMethod ();
 	$action=null;
-	$parameters ["SearchingString"] = $string;
-
+	$parameters ["publisherName"] = $pName;
+	$parameters ["userID"] = $userID;
+	
 	if(!empty($string)){
 		switch ($httpMethod) {
 			case "GET" :
 				if ($string != null) {
-					$action = ACTION_SEARCH_BOOKS;
+					$action = ACTION_PUBLISHER_ACQUIRES_AUTHOR;
 				}
 				break;
 			default:
 		}
 	}
-	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "UseCaseModel", "UseCaseController", "jsonView", $action, $app, $parameters );
 } )->via ( "POST" );
 
 //User adds new book, by an already existing publisher
@@ -224,19 +225,20 @@ $app->map ( "/user/:id/publisher/:name/book", "authenticate", function ($userID 
 
 	$httpMethod = $app->request->getMethod ();
 	$action=null;
-	$parameters ["SearchingString"] = $string;
+	$parameters ["userID"] = $userID;
+	$parameters ["publisherName"] = $pName;
 
 	if(!empty($string)){
 		switch ($httpMethod) {
 			case "GET" :
 				if ($string != null) {
-					$action = ACTION_SEARCH_BOOKS;
+					$action = ACTION_AUTHOR_ADDS_NEW_BOOK;
 				}
 				break;
 			default:
 		}
 	}
-	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "UseCaseModel", "UseCaseController", "jsonView", $action, $app, $parameters );
 } )->via ( "POST" );
 
 $app->run ();
