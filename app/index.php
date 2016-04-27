@@ -28,10 +28,9 @@ function authenticate(\Slim\Route $route){
 
 }
 
-<<<<<<< HEAD
+
 //user id path
-=======
->>>>>>> origin/danBranch
+
 $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) {
 	
 	$httpMethod = $app->request->getMethod ();
@@ -61,9 +60,9 @@ $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) 
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
-<<<<<<< HEAD
-//searching users on string
-=======
+
+//searching books based on id
+
 $app->map ( "/books(/:id)", "authenticate", function ($bookID = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -93,7 +92,7 @@ $app->map ( "/books(/:id)", "authenticate", function ($bookID = null) use($app) 
 	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
->>>>>>> origin/danBranch
+//searching users based on a string name/surname
 $app->map ( "/users/search(/:searchingString)", "authenticate", function ($string = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -113,8 +112,9 @@ if(!empty($string)){
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
 
-<<<<<<< HEAD
-//Publisher searching
+
+//Publisher searching based on id
+
 $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID = null) use($app) {
 	
 	$httpMethod = $app->request->getMethod ();
@@ -180,7 +180,7 @@ $app->map ( "/user/:id/name/:name", "authenticate", function ($id, $name) use($a
 	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
 
-=======
+//searching books based on a search string
 $app->map ( "/books/search(/:searchingString)", "authenticate", function ($string = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -199,7 +199,7 @@ $app->map ( "/books/search(/:searchingString)", "authenticate", function ($strin
 	}
 	return new loadRunMVCComponents ( "BookModel", "BookController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
->>>>>>> origin/danBranch
+
 
 $app->run ();
 class loadRunMVCComponents {
