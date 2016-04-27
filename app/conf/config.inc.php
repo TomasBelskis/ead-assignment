@@ -37,10 +37,6 @@ define("ACTION_SEARCH_PUBLISHER", 89);
 define("ACTION_PUBLISHER_ACQUIRES_AUTHOR", 91);
 define("ACTION_AUTHOR_ADDS_NEW_BOOK", 92);
 
-/*actions for the UseCase REST resource*/
-define("ACTION_PUBLISHER_ACQUIRES_AUTHOR", 90);
-define("ACTION_AUTHOR_ADDS_NEW_BOOK", 91);
-
 /* HTTP status codes 2xx*/
 define("HTTPSTATUS_OK", 200);
 define("HTTPSTATUS_CREATED", 201);

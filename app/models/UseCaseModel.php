@@ -1,13 +1,7 @@
 <?php
-
 require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
-<<<<<<< HEAD
 require_once (realpath(dirname(__FILE__)."/../DB/DAO/UseCaseDAO.php"));
 require_once "Validation.php";
-=======
-require_once (realpath(dirname(__FILE__)."/../DB/DAO/BooksDAO.php"));
-require_once (realpath(dirname(__FILE__). "Validation.php"));
->>>>>>> refs/remotes/origin/master
 class UseCaseModel {
 	private $UseCaseDao; // list of DAOs used by this model
 	private $dbmanager; // dbmanager
@@ -15,7 +9,7 @@ class UseCaseModel {
 	private $validationSuite; // contains functions for validating inputs
 	public function __construct() {
 		$this->dbmanager = new pdoDbManager ();
-		$this->UseCaseDAO = new UseCaseDAO ( $this->dbmanager );
+		$this->UseCaseDao = new UseCaseDAO ( $this->dbmanager );
 		$this->dbmanager->openConnection ();
 		$this->validationSuite = new Validation ();
 	}
@@ -38,15 +32,14 @@ class UseCaseModel {
 		return (false);
 	}
 	
-		public function publisherAcquiresAuthor($author_id,$publisher)
+	public function publisherAcquiresAuthor($author_id,$publisher)
 	{
-		if (! empty ( $author_id )&&! empty ( $publisher)&&is_numeric($author_id)
+		if (! empty ( $author_id )&&! empty ($publisher)&&is_numeric($author_id)
 			&&($this->validationSuite->isLengthStringValid ( $publisher, TABLE_PUBLISHER_LENGTH )))
 		{
 			return ($this->UseCaseDao->PublisherAcquiresAuthors($publisher, $author_id));
 		}
-	}
-	
+	}	
 	
 	public function __destruct() {
 		$this->UseCaseDAO = null;
