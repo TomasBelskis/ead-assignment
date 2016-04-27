@@ -9,9 +9,9 @@ class UseCaseDAO {
 		$this->dbManager = $DBMngr;
 	}
 	
-	public function PublisherAcquiresAuthors($publisher,$authorID)
+	public function PublisherAcquiresAuthors($publisher,$author_id)
 	{
-		if(!empty($publisher)&&!empty($authorID))
+		if(!empty($publisher)&&!empty($author_id))
 		{
 			//echo "not empty";
 			$sql = "UPDATE books ";
