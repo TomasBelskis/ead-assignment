@@ -207,10 +207,10 @@ $app->map ( "/publisher/:name/user/:id", "authenticate", function ($pName = null
 	$parameters ["publisher"] = $pName;
 	$parameters ["author_id"] = $userID;
 	
-	if(!empty($string)){
+	if(!empty($parameters)){
 		switch ($httpMethod) {
-			case "GET" :
-				if ($string != null) {
+			case "POST" :
+				if ($parameters != null) {
 					$action = ACTION_PUBLISHER_ACQUIRES_AUTHOR;
 				}
 				break;
