@@ -8,7 +8,7 @@ class UseCaseController {
 		$this->slimApp = $slimApp;
 		$this->requestBody = json_decode ( $this->slimApp->request->getBody (), true ); // this must contain the representation of the new book
 		
-		if (! empty ( $parameters ))
+		if (! empty ( $parameters["author_id"] )&&! empty ( $parameters["publisher"] ))
 			$author_id = $parameters ["author_id"];
 			$publisher = $parameters ["publisher"];			
 		
@@ -30,7 +30,20 @@ class UseCaseController {
 	}
 	private function PublisherAcquiresAuthor($author_id,$publisher)
 	{
-		
+		if(is_numeric($authorID))
+		{
+			$answer = $this->model->publisherAcquiresAuthor($author_id,$publisher);
+			if ($answer != null) {
+				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
+				$this->model->apiResponse = $answer;
+			} else {
+					
+				$this->slimApp->response ()->setStatus ( HTTPSTATUS_NOCONTENT );
+				$Message = array (
+						GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE
+				);
+				$this->model->apiResponse = $Message;
+		}
 	}
 	
 	private function AuthorAddsBook($authorId, $publisher, $param) 

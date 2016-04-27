@@ -13,7 +13,7 @@ class UseCaseDAO {
 	{
 		if(!empty($publisher)&&!empty($authorID))
 		{
-			//echo "not empty";z
+			//echo "not empty";
 			$sql = "UPDATE books ";
 			$sql .= "SET publisher = ?";
 			$sql .= "WHERE author_id = ?;";
