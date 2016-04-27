@@ -49,7 +49,7 @@ class UseCaseController {
 	
 	private function AuthorAddsBook($authorId, $publisher, $param) 
 	{
-		$answer = $this->model->searchPublisherOnAddress ( $address );
+		$answer = $this->model->addBook ( $authorId, $publisher, $param );
 		if ($answer != null) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 			$this->model->apiResponse = $answer;

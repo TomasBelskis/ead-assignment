@@ -215,6 +215,7 @@ $app->map ( "/publisher/:name/user/:id", "authenticate", function ($pName = null
 				}
 				break;
 			default:
+				break;
 		}
 	}
 	return new loadRunMVCComponents ( "UseCaseModel", "UseCaseController", "jsonView", $action, $app, $parameters );
@@ -230,7 +231,7 @@ $app->map ( "/user/:id/publisher/:name/book", "authenticate", function ($userID 
 
 	if(!empty($string)){
 		switch ($httpMethod) {
-			case "GET" :
+			case "POST" :
 				if ($string != null) {
 					$action = ACTION_AUTHOR_ADDS_NEW_BOOK;
 				}
