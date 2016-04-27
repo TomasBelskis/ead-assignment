@@ -16,6 +16,12 @@ define("ACTION_UPDATE_USER", 66);
 define("ACTION_DELETE_USER", 77);
 define("ACTION_SEARCH_USERS", 88);
 define("ACTION_AUTHENTICATE_USER", 99);
+define("ACTION_GET_BOOK", 35);
+define("ACTION_GET_BOOKS", 46);
+define("ACTION_CREATE_BOOK", 57);
+define("ACTION_UPDATE_BOOK", 68);
+define("ACTION_DELETE_BOOK", 79);
+define("ACTION_SEARCH_BOOKS", 81);
 
 /* actions for the Publisher REST resource */
 define("ACTION_GET_PUBLISHER", 34);
@@ -72,10 +78,15 @@ define("TABLE_USER_NAME_LENGTH", 25);
 define("TABLE_USER_SURNAME_LENGTH", 25);
 define("TABLE_USER_EMAIL_LENGTH", 50);
 define("TABLE_USER_PASSWORD_LENGTH", 40);
+<<<<<<< HEAD
 
 /* representation of a new publisher in the DB*/
 define("TABLE_PUBLISHER_LENGTH", 150);
 define("TABLE_PUBLISHER_ADDRESS_LENGTH", 100);
 define("TABLE_PUBLISHER_PHONE_LENGTH", 12);
 
+=======
+define("TABLE_PUBLISHER_LENGTH", 60);
+define("TABLE_BOOK_TITLE_LENGTH", 60);
+>>>>>>> origin/danBranch
 ?>
