@@ -1,8 +1,8 @@
 <?php
 
 require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
-require_once (realpath(dirname(__FILE__)."/../DB/DAO/BooksDAO.php"));
-require_once (realpath(dirname(__FILE__). "Validation.php"));
+require_once (realpath(dirname(__FILE__)."/../DB/DAO/UseCaseDAO.php"));
+require_once (realpath(dirname(__FILE__). "/Validation.php"));
 class UseCaseModel {
 	private $UseCaseDao; // list of DAOs used by this model
 	private $dbmanager; // dbmanager

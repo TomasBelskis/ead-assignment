@@ -1,6 +1,5 @@
 <?php
-<<<<<<< HEAD
-=======
+
 /**
  * @author Daniel
  * definition of the Books DAO
@@ -114,4 +113,4 @@ class BooksDAO {
 	}
 }
 ?>
->>>>>>> origin/danBranch
+

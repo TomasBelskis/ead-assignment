@@ -228,10 +228,10 @@ $app->map ( "/user/:id/publisher/:name/book", "authenticate", function ($userID 
 	$parameters ["author_id"] = $userID;
 	$parameters ["publisher"] = $pName;
 
-	if(!empty($string)){
+	if(!empty($userID)&&!empty($pName)){
 		switch ($httpMethod) {
 			case "POST" :
-				if ($string != null) {
+				if ($userID != null&&$pName != null) {
 					$action = ACTION_AUTHOR_ADDS_NEW_BOOK;
 				}
 				break;
