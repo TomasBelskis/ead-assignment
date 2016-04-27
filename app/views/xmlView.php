@@ -1,5 +1,5 @@
 <?php
-class jsonView
+class xmlView
 {
 	private $model, $controller, $slimApp;
 
@@ -13,9 +13,10 @@ class jsonView
 		//prepare xml response
 		
 		$publishers = $this->model->apiResponse;
+	
+		$this->slimApp->render('../templates/xmlView.xml',$publishers);
 		
-		
-		$this->slimApp->response->write($jsonResponse);
+		//$this->slimApp->response->write($jsonResponse);
 	}
 }
 ?>

@@ -106,7 +106,7 @@ $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID 
 			default :
 		}
 	}
-	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "jsonView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "xmlView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
 //seraching publisher based on address

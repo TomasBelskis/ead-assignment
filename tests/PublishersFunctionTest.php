@@ -8,7 +8,7 @@ class PublishersFunctionTest extends UnitTestCase{
 		$this->pDAO = new PublisherDAO($DBMngr);
 	}
 	public function testGetPublishers() {
-		$this->assertEqual ( 0, $this->ba->getBalance () );
+		
 	}
 	public function testGetPublisher(){
 		
