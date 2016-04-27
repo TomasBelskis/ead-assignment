@@ -1,1 +1,42 @@
 <?php
+require_once "DB/pdoDbManager.php";
+require_once "DB/DAO/UseCaseDAO.php";
+require_once "Validation.php";
+class UseCaseModel {
+	private $UsersDAO; // list of DAOs used by this model
+	private $dbmanager; // dbmanager
+	public $apiResponse; // api response
+	private $validationSuite; // contains functions for validating inputs
+	public function __construct() {
+		$this->dbmanager = new pdoDbManager ();
+		$this->UseCaseDAO = new UseCaseDAO ( $this->dbmanager );
+		$this->dbmanager->openConnection ();
+		$this->validationSuite = new Validation ();
+	}
+
+	//User adds a new book
+	public function addBook($authorId, $publisher, $parameters) {
+		// validation of the values for new book and existing authorID and publisher
+		
+		// compulsory values
+		if (! empty ( $authorId ) && ! empty ( $publisher) && ! empty ( $parameters["title"])) {
+
+			
+			if (($this->validationSuite->isLengthStringValid ( $publisher, TABLE_PUBLISHER_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $parameters ["title"], TABLE_BOOK_TITLE_LENGTH ))) {
+				if ($bookID = $this->UseCaseDAO->insertBook ( $authorId, $publisher, $parameters ))
+					return ($bookID);
+			}
+		}
+		
+		// if validation fails or insertion fails
+		return (false);
+	}
+	
+	
+	
+	public function __destruct() {
+		$this->UseCaseDAO = null;
+		$this->dbmanager->closeConnection ();
+	}
+}
+?>

@@ -204,12 +204,12 @@ $app->map ( "/publisher/:name/user/:id", "authenticate", function ($pName = null
 
 	$httpMethod = $app->request->getMethod ();
 	$action=null;
-	$parameters ["publisherName"] = $pName;
-	$parameters ["userID"] = $userID;
+	$parameters ["publisher"] = $pName;
+	$parameters ["author_id"] = $userID;
 	
 	if(!empty($string)){
 		switch ($httpMethod) {
-			case "GET" :
+			case "POST" :
 				if ($string != null) {
 					$action = ACTION_PUBLISHER_ACQUIRES_AUTHOR;
 				}
@@ -225,12 +225,12 @@ $app->map ( "/user/:id/publisher/:name/book", "authenticate", function ($userID 
 
 	$httpMethod = $app->request->getMethod ();
 	$action=null;
-	$parameters ["userID"] = $userID;
-	$parameters ["publisherName"] = $pName;
+	$parameters ["author_id"] = $userID;
+	$parameters ["publisher"] = $pName;
 
 	if(!empty($string)){
 		switch ($httpMethod) {
-			case "GET" :
+			case "POST" :
 				if ($string != null) {
 					$action = ACTION_AUTHOR_ADDS_NEW_BOOK;
 				}
