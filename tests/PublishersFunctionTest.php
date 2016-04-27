@@ -26,7 +26,7 @@ class PublishersFunctionTest extends UnitTestCase{
 		
 	}
 	public function tearDown() {
-		$this->ba = NULL;
+		$this->pDAO = NULL;
 	}
 }
 ?>
