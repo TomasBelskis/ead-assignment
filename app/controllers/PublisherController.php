@@ -16,7 +16,7 @@ class PublisherController {
 				$this->getPublisher ( $publisher );
 				break;
 			case ACTION_GET_PUBLISHERS :
-				$this->getPublisher ();
+				$this->getPublishers ();
 				break;
 			case ACTION_UPDATE_PUBLISHER :
 				$this->updatePublisher ( $publisher, $this->requestBody );
@@ -28,8 +28,8 @@ class PublisherController {
 				$this->deletePublisher ( $publisher );
 				break;
 			case ACTION_SEARCH_PUBLISHER :
-				$string = $parameteres ["SearchingAddress"];
-				$this->searchPublisher ( $publisher );
+				$addressString = $parameteres ["SearchingAddress"];
+				$this->searchPublisherOnAddress ( $addressString );
 				break;
 			case null :
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
@@ -42,8 +42,8 @@ class PublisherController {
 	}
 	
 	//Gets all publishers
-	private function getPublisher() {
-		$answer = $this->model->getPublisher ();
+	private function getPublishers() {
+		$answer = $this->model->getPublishers ();
 		if ($answer != null) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 			$this->model->apiResponse = $answer;
@@ -55,9 +55,10 @@ class PublisherController {
 			$this->model->apiResponse = $Message;
 		}
 	}
+	
 	//gets publisher based on publisher name
-	private function getPublisher($publisher) {
-		$answer = $this->model->getPublisher ( $publisher );
+	private function getPublisher($publisherName) {
+		$answer = $this->model->getPublisher ( $publisherName );
 		if ($answer != null) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 			$this->model->apiResponse = $answer;
@@ -132,7 +133,7 @@ class PublisherController {
 	//Searches for publisher based on an address
 	private function searchPublisherOnAddress($address) {
 		//TODO
-		$answer = $this->model->searchPublisher ( $address );
+		$answer = $this->model->searchPublisherOnAddress ( $address );
 		if ($answer != null) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 			$this->model->apiResponse = $answer;

@@ -2,7 +2,7 @@
 require_once "DB/pdoDbManager.php";
 require_once "DB/DAO/PublisherDAO.php";
 require_once "Validation.php";
-class UserModel {
+class PublisherModel {
 	private $PublisherDAO; // list of DAOs used by this model
 	private $dbmanager; // dbmanager
 	public $apiResponse; // api response
@@ -40,8 +40,8 @@ class UserModel {
 			 */
 			
 			if (($this->validationSuite->isLengthStringValid ( $newPublisher ["publisher"], TABLE_PUBLISHER_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $newPublisher ["address"], TABLE_PUBLISHER_ADDRESS_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $newPublisher ["phone"], TABLE_PUBLISHER_PHONE_LENGTH ))) {
-				if ($publisher = $this->PublisherDAO->insert ( $publisher ))
-					return ($newId);
+				if ($publisher = $this->PublisherDAO->insert ( $newPublisher ))
+					return ($publisher);
 			}
 		}
 		

@@ -17,6 +17,14 @@ define("ACTION_DELETE_USER", 77);
 define("ACTION_SEARCH_USERS", 88);
 define("ACTION_AUTHENTICATE_USER", 99);
 
+/* actions for the Publisher REST resource */
+define("ACTION_GET_PUBLISHER", 34);
+define("ACTION_GET_PUBLISHERS", 45);
+define("ACTION_CREATE_PUBLISHER", 56);
+define("ACTION_UPDATE_PUBLISHER", 67);
+define("ACTION_DELETE_PUBLISHER", 78);
+define("ACTION_SEARCH_PUBLISHER", 89);
+
 /* HTTP status codes 2xx*/
 define("HTTPSTATUS_OK", 200);
 define("HTTPSTATUS_CREATED", 201);
@@ -64,5 +72,10 @@ define("TABLE_USER_NAME_LENGTH", 25);
 define("TABLE_USER_SURNAME_LENGTH", 25);
 define("TABLE_USER_EMAIL_LENGTH", 50);
 define("TABLE_USER_PASSWORD_LENGTH", 40);
+
+/* representation of a new publisher in the DB*/
+define("TABLE_PUBLISHER_LENGTH", 150);
+define("TABLE_PUBLISHER_ADDRESS_LENGTH", 100);
+define("TABLE_PUBLISHER_PHONE_LENGTH", 12);
 
 ?>

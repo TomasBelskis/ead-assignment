@@ -7,12 +7,12 @@ class PublisherDAO{
 	}
 		
 	//gets publisher on it's id	
-	public function get($id = null) {
+	public function get($publisher = null) {
 		$sql = "SELECT * ";
 		$sql .= "FROM publishers ";
-		if ($id != null)
+		if ($publisher != null)
 			$sql .= "WHERE publishers.publisher=? ";
-		$sql .= "ORDER BY publshers.publisher ";
+		$sql .= "ORDER BY publishers.publisher ";
 		
 		$stmt = $this->dbManager->prepareQuery ( $sql );
 		$this->dbManager->bindValue ( $stmt, 1, $publisher, $this->dbManager->STRING_TYPE );
@@ -34,7 +34,8 @@ class PublisherDAO{
 		$this->dbManager->bindValue ( $stmt, 3, $parametersArray ["phone"], $this->dbManager->STRING_TYPE );
 		$this->dbManager->executeQuery ( $stmt );
 		
-		return ($this->dbManager->getLastInsertedID ());
+		return $parametersArray["publisher"];
+		//return ($this->dbManager->getLastInsertedID ());
 	}
 	
 	//updates publisher record
@@ -58,6 +59,7 @@ class PublisherDAO{
 		
 			$this->dbManager->bindValue($stmt, 1 ,$address, $this->dbManager->STRING_TYPE);
 			$this->dbManager->bindValue($stmt, 2 ,$phone, $this->dbManager->STRING_TYPE);
+			$this->dbManager->bindValue($stmt, 3 ,$publisherId, $this->dbManager->STRING_TYPE);
 
 			//execute the query
 			$this->dbManager->executeQuery($stmt);
@@ -79,7 +81,7 @@ class PublisherDAO{
 			$stmt = $this->dbManager->prepareQuery($sql);
 
 			$this->dbManager->bindValue($stmt, 1 ,$publisher, $this->dbManager->STRING_TYPE);
-
+			
 			//execute the query
 			$this->dbManager->executeQuery($stmt);
 			
@@ -94,16 +96,17 @@ class PublisherDAO{
 	
 		if(!empty($address))
 		{
+			$address = "%" . $address . "%";
 			$sql="SELECT * FROM publishers ";
 			$sql.="WHERE address LIKE ?;";
 
 			echo $sql;
-
+	
 			//Prepare Query
 			$stmt = $this->dbManager->prepareQuery($sql);
 
 			//Bind Values
-			$this->dbManager->bindValue($stmt, 1, $string, $this->dbManager->STRING_TYPE);
+			$this->dbManager->bindValue($stmt, 1, $address, $this->dbManager->STRING_TYPE);
 			
 			//Execute statement
 			$this->dbManager->executeQuery($stmt);

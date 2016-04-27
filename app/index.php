@@ -106,27 +106,27 @@ $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID 
 			default :
 		}
 	}
-	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
 //seraching publisher based on address
-$app->map ( "/publisher/search(/:searchingAddress)", "authenticate", function ($string = null) use($app) {
+$app->map ( "/publisher/search(/:searchAddress)", "authenticate", function ($searchAddress = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
 	$action=null;
-	$parameters ["SearchingAddress"] = $searchingAddress;
+	$parameters ["SearchingAddress"] = $searchAddress;
 
-if(!empty($string)){
+if(!empty($searchAddress)){
 	switch ($httpMethod) {
 		case "GET" :
-				if ($string != null) {
+				if ($searchAddress != null) {
 					$action = ACTION_SEARCH_PUBLISHER;
 				}
 			break;
 		default:
 		}
 }
-	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
 
 //testing multiple paramenter route
