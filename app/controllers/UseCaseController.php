@@ -30,7 +30,7 @@ class UseCaseController {
 	}
 	private function PublisherAcquiresAuthor($author_id,$publisher)
 	{
-		if(is_numeric($authorID))
+		if(is_numeric($author_id))
 		{
 			$answer = $this->model->publisherAcquiresAuthor($author_id,$publisher);
 			if ($answer != null) {
