@@ -33,6 +33,7 @@ define("ACTION_UPDATE_PUBLISHER", 67);
 define("ACTION_DELETE_PUBLISHER", 78);
 define("ACTION_SEARCH_PUBLISHER", 89);
 
+
 /* actions for the Use Case REST resource */
 define("ACTION_PUBLISHER_ACQUIRES_AUTHOR", 91);
 define("ACTION_AUTHOR_ADDS_NEW_BOOK", 92);
@@ -90,8 +91,6 @@ define("TABLE_USER_PASSWORD_LENGTH", 40);
 define("TABLE_PUBLISHER_LENGTH", 150);
 define("TABLE_PUBLISHER_ADDRESS_LENGTH", 100);
 define("TABLE_PUBLISHER_PHONE_LENGTH", 12);
-
-/*representation of a new book in the DB*/
 define("TABLE_BOOK_TITLE_LENGTH", 60);
 
 ?>

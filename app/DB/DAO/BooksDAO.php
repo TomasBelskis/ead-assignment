@@ -1,5 +1,4 @@
 <?php
-
 /**
  * @author Daniel
  * definition of the Books DAO

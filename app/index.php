@@ -207,14 +207,15 @@ $app->map ( "/publisher/:name/user/:id", "authenticate", function ($pName = null
 	$parameters ["publisher"] = $pName;
 	$parameters ["author_id"] = $userID;
 	
-	if(!empty($string)){
+	if(!empty($parameters)){
 		switch ($httpMethod) {
 			case "POST" :
-				if ($string != null) {
+				if ($parameters != null) {
 					$action = ACTION_PUBLISHER_ACQUIRES_AUTHOR;
 				}
 				break;
 			default:
+				break;
 		}
 	}
 	return new loadRunMVCComponents ( "UseCaseModel", "UseCaseController", "jsonView", $action, $app, $parameters );

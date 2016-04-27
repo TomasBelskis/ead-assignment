@@ -16,8 +16,6 @@ define("ACTION_UPDATE_USER", 66);
 define("ACTION_DELETE_USER", 77);
 define("ACTION_SEARCH_USERS", 88);
 define("ACTION_AUTHENTICATE_USER", 99);
-
-/* actions for the books REST resource */
 define("ACTION_GET_BOOK", 35);
 define("ACTION_GET_BOOKS", 46);
 define("ACTION_CREATE_BOOK", 57);
@@ -33,9 +31,9 @@ define("ACTION_UPDATE_PUBLISHER", 67);
 define("ACTION_DELETE_PUBLISHER", 78);
 define("ACTION_SEARCH_PUBLISHER", 89);
 
-/* actions for the Use Case REST resource */
-define("ACTION_PUBLISHER_ACQUIRES_AUTHOR", 91);
-define("ACTION_AUTHOR_ADDS_NEW_BOOK", 92);
+/*actions for the UseCase REST resource*/
+define("ACTION_PUBLISHER_ACQUIRES_AUTHOR", 90);
+define("ACTION_AUTHOR_ADDS_NEW_BOOK", 91);
 
 /* HTTP status codes 2xx*/
 define("HTTPSTATUS_OK", 200);
@@ -90,8 +88,6 @@ define("TABLE_USER_PASSWORD_LENGTH", 40);
 define("TABLE_PUBLISHER_LENGTH", 150);
 define("TABLE_PUBLISHER_ADDRESS_LENGTH", 100);
 define("TABLE_PUBLISHER_PHONE_LENGTH", 12);
-
-/*representation of a new book in the DB*/
 define("TABLE_BOOK_TITLE_LENGTH", 60);
 
 ?>
