@@ -24,7 +24,7 @@ class UseCaseModel {
 
 			
 			if (($this->validationSuite->isLengthStringValid ( $publisher, TABLE_PUBLISHER_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $parameters ["title"], TABLE_BOOK_TITLE_LENGTH ))) {
-				if ($bookID = $this->UseCaseDAO->insertBook ( $authorId, $publisher, $parameters ))
+				if ($bookID = $this->UseCaseDao->insertBook ( $authorId, $publisher, $parameters ))
 					return ($bookID);
 			}
 		}
