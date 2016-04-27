@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+{% block content %}     
+	<publishers_content>
+		{% for p in publishers %}
+			<publisher>
+				<publisher_name>{{ p.publisher }}</publisher_name>
+				<publisher_address>{{ p.address }}</publisher_address>
+				<publisher_phone>{{ p.phone }}</publisher_phone>
+			</publisher>
+		{% endfor %}
+	</publishers_content>
+{% endblock %}
