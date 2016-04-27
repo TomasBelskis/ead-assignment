@@ -9,29 +9,16 @@ class BookController {
 		$this->requestBody = json_decode ( $this->slimApp->request->getBody (), true ); // this must contain the representation of the new book
 		
 		if (! empty ( $parameters ))
-			$publisher = $parameters ["publisher"];
-			
+			$author_id = $parameters ["author_id"];
+			$publisher = $parameters ["publisher"];			
 		
 		switch ($action) {
 			case ACTION_PUBLISHER_ACQUIRES_AUTHOR :
-				$this->PublisherAcquiredAuthor ( $bookID );
+				$this->PublisherAcquiresAuthor($author_id, $publisher);
 				break;
-			case ACTION_GET_BOOKS :
-				$this->getBooks ();
-				break;
-			case ACTION_UPDATE_BOOK :
-				$this->updateBook ( $bookID, $this->requestBody );
-				break;
-			case ACTION_CREATE_BOOK :
-				$this->createNewBook ( $this->requestBody );
-				break;
-			case ACTION_DELETE_BOOK :
-				$this->deleteBook ( $bookID );
-				break;
-			case ACTION_SEARCH_BOOKS :
-				$string = $parameteres ["SearchingString"];
-				$this->searchBooks ( $string );
-				break;
+			case ACTION_AUTHOR_ADDS_NEW_BOOK :
+				$this->AuthorAddsBook($this->requestBody);
+				break;				
 			case null :
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
 				$Message = array (
@@ -41,103 +28,14 @@ class BookController {
 				break;
 		}
 	}
-	private function getBooks() {
-		$answer = $this->model->getBooks ();
-		if ($answer != null) {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
-			$this->model->apiResponse = $answer;
-		} else {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_NOCONTENT );
-			$Message = array (
-					GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE 
-			);
-			$this->model->apiResponse = $Message;
-		}
+	private function PublisherAcquiresAuthor($author_id,$publisher)
+	{
+		
 	}
 	
-	private function getBook($bookID) {
-		$answer = $this->model->getBook ( $bookID );
-		if ($answer != null) {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
-			$this->model->apiResponse = $answer;
-		} else {
-			
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_NOCONTENT );
-			$Message = array (
-					GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE 
-			);
-			$this->model->apiResponse = $Message;
-		}
-	}
+	private function AuthorAddsBook($param) {
+		
 	
-	private function createNewBook($newBook) {
-		if ($newID = $this->model->createNewbook ( $newBook )) {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_CREATED );
-			$Message = array (
-					GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_CREATED,
-					"book_id" => "$newID" 
-			);
-			$this->model->apiResponse = $Message;
-		} else {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
-			$Message = array (
-					GENERAL_MESSAGE_LABEL => GENERAL_INVALIDBODY 
-			);
-			$this->model->apiResponse = $Message;
-		}
 	}
-	private function deleteBook($bookID) {
-		//TODO
-		if ($deletedId = $this->model->deleteBook ( $bookID )) {
-				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
-				$Message = array (
-						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_DELETED,
-						"book_id" => "$deletedId" 
-				);
-				$this->model->apiResponse = $Message;
-			} else {
-				$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
-				$Message = array (
-						GENERAL_MESSAGE_LABEL => GENERAL_INVALIDBODY 
-				);
-				$this->model->apiResponse = $Message;
-			}
-	}
-	
-	private function updateBook($bookID, $bookUpdate) {
-		//TODO
-	
-		if ($updatedInfo = $this->model->updateBooks ($bookID, $bookUpdate)) {
-				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
-			
-				$Message = array (
-						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_UPDATED,
-						"book_id" => "$bookID"
-						
-				);
-				$this->model->apiResponse = $Message;
-			} else {
-				$this->slimApp->response ()->setStatus ( HTTPSTATUS_BADREQUEST );
-				$Message = array (
-						GENERAL_MESSAGE_LABEL => GENERAL_INVALIDBODY 
-				);
-				$this->model->apiResponse = $Message;
-			}
-	}
-	private function searchBooks($string) {
-		//TODO
-		$answer = $this->model->searchBooks ( $string );
-		if ($answer != null) {
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
-			$this->model->apiResponse = $answer;
-		} else {
-			
-			$this->slimApp->response ()->setStatus ( HTTPSTATUS_NOCONTENT );
-			$Message = array (
-					GENERAL_MESSAGE_LABEL => GENERAL_NOCONTENT_MESSAGE 
-			);
-			$this->model->apiResponse = $Message;
-		}
-	}	
 }
 ?>
