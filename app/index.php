@@ -86,10 +86,10 @@ $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID 
 	$action = null;
 	$parameters ["publisher"] = $publisherID; // prepare parameters to be passed to the controller (example: ID)
 	
-	if (($userID == null) or is_numeric ( $userID )) {
+	if (($publisherID == null) or !empty ( $publisherID )) {
 		switch ($httpMethod) {
 			case "GET" :
-				if ($userID != null)
+				if ($publisherID != null)
 					$action = ACTION_GET_PUBLISHER;
 				else
 					$action = ACTION_GET_PUBLISHERS;
@@ -109,6 +109,7 @@ $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID 
 	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
+//seraching publisher based on address
 $app->map ( "/publisher/search(/:searchingAddress)", "authenticate", function ($string = null) use($app) {
 
 	$httpMethod = $app->request->getMethod ();
@@ -128,6 +129,21 @@ if(!empty($string)){
 	return new loadRunMVCComponents ( "UserModel", "PublisherController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET" );
 
+//testing multiple paramenter route
+$app->map ( "/user/:id/name/:name", "authenticate", function ($id, $name) use($app) {
+
+	$httpMethod = $app->request->getMethod ();
+	$action=null;
+	$parameters ["id"] = $id;
+	$parameters["name"]=$name;
+
+	echo "Checking multiple paramenter route";
+	print_r($parameters);
+	$responseArray = json_encode($parameters);
+	$app->response->write($responseArray);
+	
+	return new loadRunMVCComponents ( "UserModel", "UserController", "jsonView", $action, $app, $parameters );
+} )->via ( "GET" );
 
 
 $app->run ();
