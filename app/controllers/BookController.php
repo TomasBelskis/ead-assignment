@@ -1,5 +1,5 @@
 <?php
-class bookController {
+class BookController {
 	private $slimApp;
 	private $model;
 	private $requestBody;
@@ -74,7 +74,7 @@ class bookController {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_CREATED );
 			$Message = array (
 					GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_CREATED,
-					"id" => "$newID" 
+					"book_id" => "$newID" 
 			);
 			$this->model->apiResponse = $Message;
 		} else {
@@ -91,7 +91,7 @@ class bookController {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 				$Message = array (
 						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_DELETED,
-						"id" => "$deletedId" 
+						"book_id" => "$deletedId" 
 				);
 				$this->model->apiResponse = $Message;
 			} else {
@@ -111,7 +111,7 @@ class bookController {
 			
 				$Message = array (
 						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_UPDATED,
-						"id" => "$bookID"
+						"book_id" => "$bookID"
 						
 				);
 				$this->model->apiResponse = $Message;
