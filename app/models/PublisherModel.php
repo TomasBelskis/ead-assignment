@@ -1,6 +1,6 @@
 <?php
-require_once "DB/pdoDbManager.php";
-require_once "DB/DAO/PublisherDAO.php";
+require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
+require_once (realpath(dirname(__FILE__)."/../DB/DAO/PublisherDAO.php"));
 require_once "Validation.php";
 class PublisherModel {
 	private $PublisherDAO; // list of DAOs used by this model
