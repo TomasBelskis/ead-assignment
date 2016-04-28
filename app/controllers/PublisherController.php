@@ -112,7 +112,7 @@ class PublisherController {
 	private function updatePublisher($publisher, $publisherUpdate) {
 		//TODO
 	
-		if ($updatedInfo = $this->model->updateUsers ($publisher, $publisherUpdate)) {
+		if ($updatedInfo = $this->model->updatePublisher ($publisher, $publisherUpdate)) {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 			
 				$Message = array (

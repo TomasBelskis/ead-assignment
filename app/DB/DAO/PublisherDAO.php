@@ -45,7 +45,7 @@ class PublisherDAO{
 			&&!empty($parametersArray["address"])
 			&&!empty($parametersArray["phone"])
 			){
-			echo "not empyty";
+			//echo "not empyty";
 			$publisherId = $publisher;
 			$address=$parametersArray["address"];
 			$phone=$parametersArray["phone"];
@@ -54,7 +54,7 @@ class PublisherDAO{
 			$sql = "UPDATE publishers ";
 			$sql .= "SET address = ?, phone = ? ";
 			$sql .= "WHERE publisher = ?;";
-			echo $sql;
+			//echo $sql;
 			$stmt = $this->dbManager->prepareQuery($sql);
 		
 			$this->dbManager->bindValue($stmt, 1 ,$address, $this->dbManager->STRING_TYPE);

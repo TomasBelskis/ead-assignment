@@ -50,7 +50,7 @@ class PublisherModel {
 	}
 	
 	// Updates existing publisher
-	public function updateUsers($publisher, $publisherNewRepresentation) {
+	public function updatePublisher($publisher, $publisherNewRepresentation) {
 		//TODO
 		// compulsory values
 		if (!empty($publisher ) && ! empty ( $publisherNewRepresentation ["address"] ) &&
@@ -97,7 +97,7 @@ class PublisherModel {
 		//TODO
 		
 		// compulsory values
-		if (! empty ( $publisher)) {
+		if (! empty ( $publisher)&&is_string($publisher)) {
 			/*
 			 * the model knows the representation of a user in the database and this is: name: varchar(25) surname: varchar(25) email: varchar(50) password: varchar(40)
 			 */
