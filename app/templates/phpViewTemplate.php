@@ -4,16 +4,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<?php
-class PhpViewTemplate extends \Slim\View
-{
- 	public function render($template)
-    {
-        // $template === 'show.php'
-        print_r($this->data);
-    }
-} 
-?>
 <p>Yes html</p>
+
 </body>
 </html>

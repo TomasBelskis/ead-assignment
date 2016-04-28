@@ -15,7 +15,7 @@ function authenticate(\Slim\Route $route){
 
 	$username = $headers["username"];
 	$password = $headers["password"];
-	echo "authenticate got callled";
+	//echo "authenticate got callled";
 	if(!empty($username)&&!empty($password)){
 		$action=ACTION_AUTHENTICATE_USER;
 		$parameters = array("username"=>$username,"password"=>$password);
@@ -140,7 +140,7 @@ $app->map ( "/publisher(/:publisherID)", "authenticate", function ($publisherID 
 			default :
 		}
 	}
-	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "phpView", $action, $app, $parameters );
+	return new loadRunMVCComponents ( "PublisherModel", "PublisherController", "jsonView", $action, $app, $parameters );
 } )->via ( "GET", "POST", "PUT", "DELETE" );
 
 //seraching publisher based on address

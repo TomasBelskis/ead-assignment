@@ -14,7 +14,7 @@ class phpView
 		
 		$publishers = $this->model->apiResponse;
 	
-		$this->slimApp->render('../templates/phpViewTemplate.php',$publishers);
+		$this->slimApp->render('../templates/phpViewTemplate.php',array('name'=>'Josh'));
 		
 		//$this->slimApp->response->write($jsonResponse);
 	}
