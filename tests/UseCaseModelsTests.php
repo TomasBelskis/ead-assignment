@@ -13,6 +13,21 @@ class UseCaseModelTests extends UnitTestCase {
 		$this->assertFalse($this->useCaseModel->publisherAcquiresAuthor("frank", "birdie"));
 		$this->assertFalse($this->useCaseModel->publisherAcquiresAuthor(32,1));
 	}
+	
+	public function testAddBooks(){
+		//test valid params
+		$arr = array("title"=>"book");
+		$parameters = json_encode($arr);
+		$this->assertFalse($this->useCaseModel->addBook("string", "birdie", $parameters));
+		$this->assertFalse($this->useCaseModel->addBook(12, 01, $parameters));
+		
+		//test invalid params
+		$arr = array("title"=>01);
+		$parameters = json_encode($arr);
+		$this->assertFalse($this->useCaseModel->addBook("string", "birdie", $parameters));
+		$this->assertFalse($this->useCaseModel->addBook(12, 01, $parameters));
+		$this->assertFalse($this->useCaseModel->addBook(12, "birdie", $parameters));
+	}
 
 	public function tearDown() {
 		$this->ba = NULL;
