@@ -1,6 +1,6 @@
 <?php
 require_once (realpath(dirname(__FILE__)."/../SimpleTest/autorun.php"));
-require_once (realpath(dirname(__FILE__)."/../conf/config.inc.php"));
+require_once (realpath(dirname(__FILE__)."/../app/conf/config.inc.php"));
 require_once (realpath(dirname(__FILE__)."/../app/models/UseCaseModel.php"));
 class UseCaseModelTests extends UnitTestCase {
 	private $useCaseModel;

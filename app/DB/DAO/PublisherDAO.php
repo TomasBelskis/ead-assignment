@@ -100,7 +100,7 @@ class PublisherDAO{
 			$sql="SELECT * FROM publishers ";
 			$sql.="WHERE address LIKE ?;";
 
-			echo $sql;
+			//echo $sql;
 	
 			//Prepare Query
 			$stmt = $this->dbManager->prepareQuery($sql);

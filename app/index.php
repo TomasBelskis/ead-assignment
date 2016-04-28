@@ -29,8 +29,8 @@ function authenticate(\Slim\Route $route){
 }
 
 
-//user id path
 
+//user id path
 $app->map ( "/users(/:id)", "authenticate", function ($userID = null) use($app) {
 	
 	$httpMethod = $app->request->getMethod ();
