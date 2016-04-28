@@ -8,6 +8,7 @@ class AuthorTestSuite extends TestSuite {
 		$this->addFile ("BookModelTests.php");
 		$this->addFile("UseCaseModelsTests.php");
 		$this->addFile("TestValidationClass.php");
+		$this->addFile("UserModelTests.php");
 		
 	}
 }

@@ -1,7 +1,7 @@
 <?php
 require_once (realpath(dirname(__FILE__)."/../SimpleTest/autorun.php"));
 require_once (realpath(dirname(__FILE__)."/../app/conf/config.inc.php"));
-require_once (realpath(dirname(__FILE__)."/../app/models/userModel.php"));
+require_once (realpath(dirname(__FILE__)."/../app/models/UserModel.php"));
 class UserModelTests extends UnitTestCase {
 	private $userModel;
 	
@@ -79,7 +79,7 @@ class UserModelTests extends UnitTestCase {
 	
 
 	public function tearDown() {
-		$this->ba = NULL;
+		$this->userModel = NULL;
 	}
 }
 ?>
