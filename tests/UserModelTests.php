@@ -79,7 +79,7 @@ class UserModelTests extends UnitTestCase {
 	
 
 	public function tearDown() {
-		$this->ba = NULL;
+		$this->userModel = NULL;
 	}
 }
 ?>

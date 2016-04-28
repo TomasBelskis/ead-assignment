@@ -1,7 +1,8 @@
 <?php
-require_once "DB/pdoDbManager.php";
-require_once "DB/DAO/UsersDAO.php";
-require_once "Validation.php";
+require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
+require_once (realpath(dirname(__FILE__)."/../DB/DAO/UsersDAO.php"));
+require_once (realpath(dirname(__FILE__)."/Validation.php"));
+
 class UserModel {
 	private $UsersDAO; // list of DAOs used by this model
 	private $dbmanager; // dbmanager
