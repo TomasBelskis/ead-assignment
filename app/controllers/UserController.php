@@ -1,4 +1,7 @@
 <?php
+/*
+ * @author Tomas Belskis
+ */
 class UserController {
 	private $slimApp;
 	private $model;
@@ -91,12 +94,12 @@ class UserController {
 		}
 	}
 	private function deleteUser($userId) {
-		//TODO
+		
 		if ($deletedId = $this->model->deleteUser ( $userId )) {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 				$Message = array (
 						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_DELETED,
-						"id" => "$deletedId" 
+						"id" => "$userId" 
 				);
 				$this->model->apiResponse = $Message;
 			} else {
@@ -109,7 +112,7 @@ class UserController {
 	}
 	
 	private function updateUser($userId, $userUpdate) {
-		//TODO
+		
 	
 		if ($updatedInfo = $this->model->updateUsers ($userId, $userUpdate)) {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
@@ -129,7 +132,7 @@ class UserController {
 			}
 	}
 	private function searchUsers($string) {
-		//TODO
+
 		$answer = $this->model->searchUsers ( $string );
 		if ($answer != null) {
 			$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );

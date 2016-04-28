@@ -1,4 +1,8 @@
 <?php
+/*
+ * @author Tomas Belskis
+ * @author Daniel Whyte
+ */
 class UseCaseController {
 	private $slimApp;
 	private $model;
@@ -28,6 +32,12 @@ class UseCaseController {
 				break;
 		}
 	}
+	/**
+	 * 
+	 * Publisher Changes author
+	 * @param $author_id : numeric value of authors id
+	 * @param  $publisher : string representation of publishers name
+	 */
 	private function PublisherAcquiresAuthor($author_id,$publisher)
 	{
 		if(is_numeric($author_id))
@@ -46,6 +56,14 @@ class UseCaseController {
 			}
 		}
 	}
+	
+	/**
+	 * 
+	 * An Existing author adds another book to an existing publishers
+	 * @param $authorId : author id is a numeric value for author 
+	 * @param $publisher : publisher is a string representation for publisher name
+	 * @param $param : param is an array representation for new book
+	 */
 	
 	private function AuthorAddsBook($authorId, $publisher, $param) 
 	{

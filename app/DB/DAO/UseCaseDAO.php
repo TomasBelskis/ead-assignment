@@ -1,7 +1,7 @@
 <?php
 /**
  * @author Daniel
- * definition of Use Case DAO
+ * @author Tomas
  */
 class UseCaseDAO {
 	private $dbManager;
@@ -29,6 +29,7 @@ class UseCaseDAO {
 		}else
 			echo "empty";
 	}
+	
 	//Adds book to an existing publisher and existing author
 	public function insertBook($author,$publisher,$parameters){
 		if(!empty($author)&&!empty($publisher)&&!empty($parameters)){

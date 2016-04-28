@@ -28,7 +28,7 @@ class BookController {
 				$this->deleteBook ( $bookID );
 				break;
 			case ACTION_SEARCH_BOOKS :
-				$string = $parameteres ["SearchingString"];
+				$string = $parameters ["SearchingString"];
 				$this->searchBooks ( $string );
 				break;
 			case null :
@@ -91,7 +91,7 @@ class BookController {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 				$Message = array (
 						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_DELETED,
-						"book_id" => "$deletedId" 
+						"book_id" => "$bookID" 
 				);
 				$this->model->apiResponse = $Message;
 			} else {

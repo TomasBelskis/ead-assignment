@@ -1,4 +1,7 @@
 <?php
+/*
+ * @author Tomas Belskis
+ */
 require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
 require_once (realpath(dirname(__FILE__)."/../DB/DAO/UsersDAO.php"));
 require_once (realpath(dirname(__FILE__)."/Validation.php"));
@@ -25,7 +28,7 @@ class UserModel {
 	}
 	/**
 	 *
-	 * @param array $UserRepresentation:
+	 * @param array $newUser:
 	 *        	an associative array containing the detail of the new user
 	 */
 	public function createNewUser($newUser) {
@@ -46,7 +49,12 @@ class UserModel {
 		// if validation fails or insertion fails
 		return (false);
 	}
-	
+	/**
+	 * @param	$userId:
+	 * 				id of a user in the form of an numeric value
+	 * @param	$userNewRepresentation:
+	 * 				array containing new details for an existing user
+	 */
 	public function updateUsers($userID, $userNewRepresentation) {
 		//TODO
 		// compulsory values
@@ -70,7 +78,12 @@ class UserModel {
 		return (false);
 		
 	}
-	
+	/**
+	 * 
+	 * Searches for a user based on inputed string for name or surname
+	 * @param $string:
+	 * 			representation of name or surname in a string format
+	 */
 	public function searchUsers($string) {
 		//TODO
 		
@@ -90,7 +103,12 @@ class UserModel {
 		return (false);
 		
 	}
-	
+	/**
+	 * 
+	 * Deletes a user based on userID.
+	 * @param $userID:
+	 * 			a user id in the form of a numerical value
+	 */
 	public function deleteUser($userID) {
 		//TODO
 		
@@ -110,6 +128,13 @@ class UserModel {
 		return (false);
 	}
 	
+	/**
+	 * 
+	 *	Authentication function that checks if a username and password exist within the databse and allows acces,
+	 *	if it does or kills the application if it doesn't.
+	 * @param $username : string value for users name
+	 * @param $password : string value for password
+	 */
 	public function authenticateUser($username,$password){
 		if(!empty($username)&&!empty($password)){
 			if(($this->validationSuite->isLengthStringValid($username,TABLE_USER_NAME_LENGTH)) && ($this->validationSuite->isLengthStringValid($password, TABLE_USER_PASSWORD_LENGTH)))	{

@@ -1,4 +1,8 @@
 <?php
+/*
+ * @author: Tomas Belskis
+ */
+
 require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
 require_once (realpath(dirname(__FILE__)."/../DB/DAO/PublisherDAO.php"));
 require_once "Validation.php";
@@ -31,12 +35,12 @@ class PublisherModel {
 	
 	// create a new publisher
 	public function createNewPublisher($newPublisher) {
-		// validation of the values of the new user
+		// validation of the values of the new publisher
 		
 		// compulsory values
 		if (! empty ( $newPublisher ["publisher"] ) && ! empty ( $newPublisher ["address"] ) && ! empty ( $newPublisher ["phone"] )) {
 			/*
-			 * the model knows the representation of a user in the database and this is: name: varchar(25) surname: varchar(25) email: varchar(50) password: varchar(40)
+			 * the model knows the representation of a publisher in the database 
 			 */
 			
 			if (($this->validationSuite->isLengthStringValid ( $newPublisher ["publisher"], TABLE_PUBLISHER_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $newPublisher ["address"], TABLE_PUBLISHER_ADDRESS_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $newPublisher ["phone"], TABLE_PUBLISHER_PHONE_LENGTH ))) {
@@ -55,9 +59,7 @@ class PublisherModel {
 		// compulsory values
 		if (!empty($publisher ) && ! empty ( $publisherNewRepresentation ["address"] ) &&
 		 ! empty ( $publisherNewRepresentation ["phone"] )) {
-			/*
-			 * the model knows the representation of a user in the database and this is: name: varchar(25) surname: varchar(25) email: varchar(50) password: varchar(40)
-			 */
+			
 	 
 			if (($this->validationSuite->isLengthStringValid ( $publisherNewRepresentation ["address"], TABLE_PUBLISHER_ADDRESS_LENGTH )) && ($this->validationSuite->isLengthStringValid ( $publisherNewRepresentation ["phone"], TABLE_PUBLISHER_PHONE_LENGTH ))) {
 				
@@ -73,13 +75,13 @@ class PublisherModel {
 	}
 	
 	public function searchPublisherOnAddress($address) {
-		//TODO
+		
+		/*
+		 * Searches for a publisher based on an address
+		 */
 		
 		// compulsory values
 		if (!empty($address)) {
-			/*
-			 * the model knows the representation of a user in the database and this is: name: varchar(25) surname: varchar(25) email: varchar(50) password: varchar(40)
-			 */
 			
 			if (($this->validationSuite->isLengthStringValid ( $address, TABLE_PUBLISHER_ADDRESS_LENGTH ))) {
 				if ($publisher = $this->PublisherDAO->search($address))
@@ -92,15 +94,12 @@ class PublisherModel {
 		
 	}
 	
-	//Delete publisher
+	
 	public function deletePublisher($publisher) {
-		//TODO
-		
+	//Deletes a publisher
 		// compulsory values
 		if (! empty ( $publisher)&&is_string($publisher)) {
-			/*
-			 * the model knows the representation of a user in the database and this is: name: varchar(25) surname: varchar(25) email: varchar(50) password: varchar(40)
-			 */
+			
 			
 			if (!empty($publisher)) {
 				if ($deleted = $this->PublisherDAO->delete($publisher));

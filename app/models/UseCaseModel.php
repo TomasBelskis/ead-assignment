@@ -1,4 +1,8 @@
 <?php
+/*
+ * @author Tomas-Mac
+ * @author Daniel Whyte
+ */
 require_once (realpath(dirname(__FILE__)."/../DB/pdoDbManager.php"));
 require_once (realpath(dirname(__FILE__)."/../DB/DAO/UseCaseDAO.php"));
 require_once (realpath(dirname(__FILE__). "/Validation.php"));

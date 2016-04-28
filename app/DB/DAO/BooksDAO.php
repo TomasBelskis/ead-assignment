@@ -69,7 +69,7 @@ class BooksDAO {
 	public function delete($bookID) {
 		//TODO
 		if(!empty($bookID)){
-			echo "book_id to be delted". $bookID;
+			echo "book_id to be deleted	". $bookID;
 
 			$sql="DELETE FROM books ";
 			$sql.= "WHERE book_id = ?;";
@@ -91,7 +91,7 @@ class BooksDAO {
 			$sql="SELECT * FROM books ";
 			$sql.="WHERE title LIKE ?;";
 
-			echo $sql;
+			//echo $sql;
 
 			//Prepare Query
 			$stmt = $this->dbManager->prepareQuery($sql);

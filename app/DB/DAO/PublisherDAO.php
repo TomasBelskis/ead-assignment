@@ -1,4 +1,7 @@
 <?php
+/*
+ * @author Tomas Belskis
+ */
 class PublisherDAO{
 	private $dbManager;
 	

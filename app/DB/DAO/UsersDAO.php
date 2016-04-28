@@ -1,7 +1,6 @@
 <?php
 /**
- * @author Luca
- * definition of the User DAO (database access object)
+ * @author Tomas Belskis
  */
 class UsersDAO {
 	private $dbManager;
@@ -44,7 +43,7 @@ class UsersDAO {
 			&&!empty($parametersArray["email"])
 			&&!empty($parametersArray["password"])
 			){
-			echo "not empyty";
+			//echo "not empyty";
 			$id = $userID;
 			$name=$parametersArray["name"];
 			$surname=$parametersArray["surname"];
@@ -55,7 +54,7 @@ class UsersDAO {
 			$sql = "UPDATE users ";
 			$sql .= "SET name = ?, surname = ?, email = ?, password = ? ";
 			$sql .= "WHERE id = ?;";
-			echo $sql;
+			//echo $sql;
 			$stmt = $this->dbManager->prepareQuery($sql);
 		
 			$this->dbManager->bindValue($stmt, 1 ,$name, $this->dbManager->STRING_TYPE);
@@ -74,7 +73,7 @@ class UsersDAO {
 	public function delete($userID) {
 		//TODO
 		if(!empty($userID)){
-			echo "userID to be delted". $userID;
+			echo "userID to be deleted	". $userID;
 
 			$sql="DELETE FROM users ";
 			$sql.= "WHERE id = ?;";
@@ -98,7 +97,7 @@ class UsersDAO {
 			$sql="SELECT * FROM users ";
 			$sql.="WHERE name LIKE ? OR surname LIKE ?;";
 
-			echo $sql;
+			//echo $sql;
 
 			//Prepare Query
 			$stmt = $this->dbManager->prepareQuery($sql);

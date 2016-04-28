@@ -1,4 +1,7 @@
 <?php
+/*
+ * @author	Tomas Belskis
+ */
 class PublisherController {
 	private $slimApp;
 	private $model;
@@ -96,7 +99,7 @@ class PublisherController {
 				$this->slimApp->response ()->setStatus ( HTTPSTATUS_OK );
 				$Message = array (
 						GENERAL_MESSAGE_LABEL => GENERAL_RESOURCE_DELETED,
-						"publisherName" => "$deletedPublisher" 
+						"publisherName" => "$publisher" 
 				);
 				$this->model->apiResponse = $Message;
 			} else {
